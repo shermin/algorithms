@@ -10,6 +10,9 @@ Merge k sorted linked lists and return it as one sorted list. Analyze and descri
 
 from heapq import heappush, heappop, heapreplace, heapify
 
+from Cython.Compiler.ExprNodes import ListNode
+
+
 def mergeKLists(lists):
     dummy = node = ListNode(0)
     h = [(n.val, n) for n in lists if n]
@@ -25,12 +28,12 @@ def mergeKLists(lists):
 
     return dummy.next
 
-from Queue import PriorityQueue
+import queuelib
 
 def merge_k_lists(lists):
     dummy = ListNode(None)
     curr = dummy
-    q = PriorityQueue()
+    q = queuelib.PriorityQueue()
     for node in lists:
         if node: q.put((node.val,node))
     while q.qsize()>0:
